@@ -23,6 +23,11 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
   test1:
+    runs-on: ubuntu-latest
+    container:
+      image: gentoo/stage3:systemd
     needs: test
     steps:
-      - run: ls /usr
+      - run: |
+          ls /usr
+          ls /github
