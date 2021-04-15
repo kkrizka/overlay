@@ -9,6 +9,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: List files in the repository
         run: |
+          echo "find everythi"
+          find / | grep uproot
           echo "-- /"
           ls /
           echo "-- /github"
