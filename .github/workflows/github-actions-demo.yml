@@ -4,7 +4,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: gentoo/stage3-amd64
+      image: gentoo/stage3:systemd
     steps:
       - uses: actions/checkout@v2
       - name: Sync portage repository
