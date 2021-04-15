@@ -11,10 +11,8 @@ jobs:
         run: emerge --sync
       - name: Add overlay
         run: |
-          echo ACCEPT_KEYWORDS="~amd64" >> /etc/portage/make.conf
+          echo ACCEPT_KEYWORDS=\"~amd64\" >> /etc/portage/make.conf
           emerge app-eselect/eselect-repository
-          touch /etc/portage/repos.conf
-          eselect repository create /github/workspace
       - name: List files in the repository
         run: |
           ls /
