@@ -11,14 +11,7 @@ jobs:
         run: |
           echo "find everythi"
           find / | grep uproot
-          echo "-- /"
-          ls /
-          echo "-- /github"
-          ls /github
-          echo "-- /workflow"
-          ls /github/workflow
-          echo "-- ${{ github.workspace }}"
-          ls ${{ github.workspace }}
+          export
       - run: echo "🍏 This job's status is ${{ github.workspace }}."
       - name: Sync portage repository
         run: emerge --sync
@@ -26,12 +19,7 @@ jobs:
         run: |
           echo ACCEPT_KEYWORDS=\"~amd64\" >> /etc/portage/make.conf
           emerge app-eselect/eselect-repository
-      - name: List files in the repository
-        run: |
-          ls /
-          ls /github
-          ls /github/workspace
-          ls ${{ github.workspace }}
+          eselect repository create overlay /__w/overlay/overlay/
       - run: echo "🍏 This job's status is ${{ job.status }}."
   test1:
     runs-on: ubuntu-latest
