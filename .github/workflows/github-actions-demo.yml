@@ -1,26 +1,15 @@
 name: Build
 on: push
 jobs:
-  build_ebuild:
+  test:
     runs-on: ubuntu-latest
     container:
       image: gentoo/stage3-amd64
     steps:
       - uses: actions/checkout@v2
-      - name: What OS is running
-        run: uname -a
-      - run: |
-          ls /usr/portage
+      - name: Update packages
+        run: emerge --sync
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-  node-docker:
-    runs-on: ubuntu-latest
-    container:
-      image: node:14.15.0-alpine3.12
-    steps:
-         - name: Log the node version
-           run: |
-             node -v
-             cat /etc/os-release
