@@ -3,10 +3,12 @@ on: push
 jobs:
   build_ebuild:
     runs-on: ubuntu-latest
+    container:
+      image: gentoo/stage3-amd64
     steps:
-      - name: Prepare starting docker image
-        uses: docker://gentoo/stage3-amd64
       - uses: actions/checkout@v2
+      - name: What OS is running
+        run: uname -a
       - run: |
           ls /usr/portage
       - name: List files in the repository
