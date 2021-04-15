@@ -9,8 +9,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Sync portage repository
         run: emerge --sync
+      - name: Add overlay
+        run: emerge app-eselect/eselect-repository
       - name: List files in the repository
         run: |
-          find /
+          ls /github/workspace
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
