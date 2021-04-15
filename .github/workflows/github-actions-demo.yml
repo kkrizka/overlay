@@ -9,8 +9,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: List files in the repository
         run: |
+          echo "-- /"
           ls /
+          echo "-- /github"
           ls /github
+          echo "-- /workflow"
           ls /github/workflow
       - run: echo "🍏 This job's status is ${{ github.workspace }}."
       - name: Sync portage repository
