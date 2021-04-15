@@ -7,19 +7,16 @@ jobs:
       image: gentoo/stage3:systemd
     steps:
       - uses: actions/checkout@v2
-      - name: List files in the repository
-        run: |
-          echo "find everythi"
-          find / | grep uproot
-          export
-      - run: echo "🍏 This job's status is ${{ github.workspace }}."
       - name: Sync portage repository
         run: emerge --sync
       - name: Add overlay
         run: |
           echo ACCEPT_KEYWORDS=\"~amd64\" >> /etc/portage/make.conf
           emerge app-eselect/eselect-repository
-          eselect repository create overlay /__w/overlay/overlay/
+          touch /etc/portage/repos.conf
+          eselect repository create overlay ${GITHUB_WORKSPACE}
+      - name: Emerge uproot
+        run: emerge uproot
       - run: echo "🍏 This job's status is ${{ job.status }}."
   test1:
     runs-on: ubuntu-latest
