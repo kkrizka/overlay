@@ -7,9 +7,10 @@ jobs:
       image: gentoo/stage3-amd64
     steps:
       - uses: actions/checkout@v2
-      - name: Update packages
+      - name: Sync portage repository
         run: emerge --sync
       - name: List files in the repository
         run: |
+          find /
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
