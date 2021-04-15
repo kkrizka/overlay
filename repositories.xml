@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>kkrizka</name>
+      <description lang="en">Karol Krizka's Custom Gentoo Overlay.</description>
+        <homepage>https://github.com/kkrizka/overlay</homepage>
+        <owner type="person">
+            <name>kkrizka</name>
+            <email>kkrizka@gmail.com</email>
+        </owner>
+        <source type="git">git://github.com/kkrizka/overlay.git</source>
+        <feed>https://github.com/kkrizka/overlay/commits/master.atom</feed>
+  </repo>
+</repositories>
+
