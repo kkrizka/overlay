@@ -7,6 +7,12 @@ jobs:
       image: gentoo/stage3:systemd
     steps:
       - uses: actions/checkout@v2
+      - name: List files in the repository
+        run: |
+          ls /
+          ls /github
+          ls /github/workflow
+      - run: echo "🍏 This job's status is ${{ github.workspace }}."
       - name: Sync portage repository
         run: emerge --sync
       - name: Add overlay
