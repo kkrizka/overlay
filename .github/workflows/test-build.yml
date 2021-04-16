@@ -1,0 +1,24 @@
+name: Test Build Packages
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - dev-python/uproot
+          - dev-python/awkward
+    container:
+      image: gentoo/stage3:systemd
+    steps:
+      - uses: actions/checkout@v2
+      - name: Sync portage repository
+        run: emerge --sync
+      - name: Add overlay
+        run: |
+          echo ACCEPT_KEYWORDS=\"~amd64\" >> /etc/portage/make.conf
+          emerge app-eselect/eselect-repository
+          touch /etc/portage/repos.conf
+          eselect repository create overlay ${GITHUB_WORKSPACE}
+      - name: Emerge ${{ matrix.package }}
+        run: emerge ${{ matrix.package }}
