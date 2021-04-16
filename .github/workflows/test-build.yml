@@ -8,6 +8,8 @@ jobs:
         package:
           - dev-python/uproot
           - dev-python/awkward
+          - dev-libs/arrow
+          - dev-python/pyarrow
     container:
       image: gentoo/stage3:systemd
     steps:
