@@ -3,6 +3,11 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - dev-python/uproot
+          - dev-python/awkward
     container:
       image: gentoo/stage3:systemd
     steps:
@@ -15,15 +20,5 @@ jobs:
           emerge app-eselect/eselect-repository
           touch /etc/portage/repos.conf
           eselect repository create overlay ${GITHUB_WORKSPACE}
-      - name: Emerge uproot
-        run: emerge uproot
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-  test1:
-    runs-on: ubuntu-latest
-    container:
-      image: gentoo/stage3:systemd
-    needs: test
-    steps:
-      - run: |
-          ls /usr
-          ls /github
+      - name: Emerge ${{ matrix.package }}
+        run: emerge ${{ matrix.package }}
