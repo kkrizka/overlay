@@ -1,0 +1,33 @@
+From 133ddee856b5de4d5a1218c817694820c590c95b Mon Sep 17 00:00:00 2001
+From: Karol Krizka <kkrizka@gmail.com>
+Date: Thu, 15 Apr 2021 10:24:12 -0700
+Subject: [PATCH 2/2] Use cmake's DOCDIR.
+
+---
+ cpp/CMakeLists.txt | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/cpp/CMakeLists.txt b/cpp/CMakeLists.txt
+index 8f3f15e..e8395a2 100644
+--- a/cpp/CMakeLists.txt
++++ b/cpp/CMakeLists.txt
+@@ -100,7 +100,6 @@ include(GNUInstallDirs)
+ set(BUILD_SUPPORT_DIR "${CMAKE_SOURCE_DIR}/build-support")
+ 
+ set(ARROW_CMAKE_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
+-set(ARROW_DOC_DIR "share/doc/${PROJECT_NAME}")
+ 
+ set(ARROW_LLVM_VERSIONS
+     "11.1"
+@@ -904,7 +903,7 @@ endif()
+ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../LICENSE.txt
+               ${CMAKE_CURRENT_SOURCE_DIR}/../NOTICE.txt
+               ${CMAKE_CURRENT_SOURCE_DIR}/README.md
+-        DESTINATION "${ARROW_DOC_DIR}")
++        TYPE DOC)
+ 
+ #
+ # Validate and print out Arrow configuration options
+-- 
+2.31.1
+
