@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86"
 
 IUSE="python +parquet"
 
-DEPEND="dev-python/numpy[${PYTHON_SINGLE_USEDEP}]"
+DEPEND="dev-python/numpy[${PYTHON_MULTI_USEDEP}]"
 
 RDEPEND="dev-libs/arrow[${PYTHON_SINGLE_USEDEP}]"
 
