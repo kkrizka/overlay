@@ -13,11 +13,14 @@ SLOT=0
 LICENSE="Apache-2.0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="python +parquet"
+IUSE="+parquet"
 
-DEPEND="dev-python/numpy[${PYTHON_MULTI_USEDEP}]"
-
-RDEPEND="dev-libs/arrow[${PYTHON_SINGLE_USEDEP}]"
+RDEPEND="
+	dev-libs/arrow[python,${PYTHON_SINGLE_USEDEP}]
+	$(python_gen_cond_dep '
+			dev-python/numpy[${PYTHON_USEDEP}]
+	')
+"
 
 S="${WORKDIR}/arrow-apache-arrow-${PV}/python"
 
