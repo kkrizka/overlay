@@ -8,6 +8,8 @@ jobs:
         package:
           - dev-python/uproot
           - dev-python/awkward
+          - dev-libs/arrow
+          - dev-python/pyarrow[python]
     container:
       image: gentoo/stage3:systemd
     steps:
@@ -21,4 +23,9 @@ jobs:
           touch /etc/portage/repos.conf
           eselect repository create overlay ${GITHUB_WORKSPACE}
       - name: Emerge ${{ matrix.package }}
-        run: emerge ${{ matrix.package }}
+        run: |
+          if [[ ${{ matrix.package }} =~ ([a-zA-Z0-9\-]+/[a-zA-Z0-9\-]+)(\[([a-zA-Z0-9\,\-]+)\])? ]]; then
+            USE=${BASH_REMATCH[3]} emerge ${BASH_REMATCH[1]}
+          else
+            emerge ${{ matrix.package }}
+          fi
