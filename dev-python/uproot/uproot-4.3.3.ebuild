@@ -1,6 +1,6 @@
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+PYTHON_COMPAT=( python3_{6,7,8,9,10} )
 inherit distutils-r1
 
 DESCRIPTION="ROOT I/O in pure Python and NumPy."
@@ -12,4 +12,4 @@ KEYWORDS="~amd64"
 
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
 
-S=${WORKDIR}/${PN}4-${PV}
+S=${WORKDIR}/${PN}5-${PV}
